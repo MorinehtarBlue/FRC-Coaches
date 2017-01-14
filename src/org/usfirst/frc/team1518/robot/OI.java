@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1518.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team1518.robot.commands.ExampleCommand;
 
@@ -9,31 +11,53 @@ import org.usfirst.frc.team1518.robot.commands.ExampleCommand;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
+	
+    public JoystickButton y;
+    public JoystickButton b;
+    public JoystickButton a;
+    public JoystickButton lb;  // JDH - remapped buttons 2/4/16
+    public JoystickButton rb;  // JDH - remapped buttons 2/4/16
+    public Joystick gamepad;
+    public JoystickButton trigger;
+    public JoystickButton reverse;
+    public Joystick leftJoystick;
+    public Joystick rightJoystick;
+    
+    
+    public OI() {
 
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
+        rightJoystick = new Joystick(1);
+        
+        leftJoystick = new Joystick(0);
+        
+        trigger = new JoystickButton(leftJoystick, 1);
+        // trigger.whileHeld(new Acquire());  // JDH - remapped buttons 2/4/16
+        gamepad = new Joystick(2);
+        
+        a = new JoystickButton(gamepad, 1);
+        //a.whileHeld(new LaunchLow());
+        // a.whileHeld(new LiftFangs());  // JDH - remapped buttons 2/4/16
+        b = new JoystickButton(gamepad, 2);
+        // b.whileHeld(new LaunchLow());  // JDH - remapped buttons 2/4/16
+        y = new JoystickButton(gamepad, 4);
+        //y.whileHeld(new LaunchHigh());
+        lb = new JoystickButton(gamepad, 5);  // JDH - remapped buttons 2/4/16
+        //lb.whileHeld(new LiftFangs());
+        rb = new JoystickButton(gamepad, 6);  // JDH - remapped buttons 2/4/16
+        //rb.whileHeld(new Acquire());
+        
+    }
+    
+    public Joystick getGamepad() {
+        return gamepad;
+    }
 
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
+    public Joystick getLeftJoystick() {
+        return leftJoystick;
+    }
 
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
+    public Joystick getRightJoystick() {
+        return rightJoystick;
+    }
 
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
 }
